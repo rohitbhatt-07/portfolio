@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Rohit | Portfolio</title>
+  <title>Rohit Bhatt | Premium Portfolio</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;800&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
   <style>
     * {
@@ -18,25 +18,29 @@
     }
 
     :root {
-      --bg: #07111f;
-      --bg2: #0b1830;
-      --card: rgba(255,255,255,0.06);
-      --card-border: rgba(255,255,255,0.12);
-      --text: #e8f1ff;
-      --muted: #9fb2d1;
+      --bg: #050b17;
+      --bg2: #0a1428;
+      --card: rgba(255, 255, 255, 0.06);
+      --card-strong: rgba(255, 255, 255, 0.09);
+      --border: rgba(255, 255, 255, 0.12);
+      --text: #ebf3ff;
+      --muted: #9fb0cf;
       --accent1: #00e5ff;
       --accent2: #7b2fff;
       --accent3: #ff4ecd;
-      --shadow: 0 10px 35px rgba(0, 0, 0, 0.35);
+      --accent4: #8ec5ff;
+      --shadow: 0 18px 55px rgba(0, 0, 0, 0.35);
+      --radius: 24px;
     }
 
     body {
       font-family: 'Inter', sans-serif;
-      background:
-        radial-gradient(circle at top left, rgba(0,229,255,0.12), transparent 25%),
-        radial-gradient(circle at top right, rgba(123,47,255,0.15), transparent 25%),
-        linear-gradient(135deg, var(--bg), var(--bg2));
       color: var(--text);
+      background:
+        radial-gradient(circle at 10% 10%, rgba(0,229,255,0.12), transparent 22%),
+        radial-gradient(circle at 90% 15%, rgba(123,47,255,0.14), transparent 24%),
+        radial-gradient(circle at 50% 90%, rgba(255,78,205,0.10), transparent 25%),
+        linear-gradient(135deg, var(--bg), var(--bg2));
       overflow-x: hidden;
       position: relative;
     }
@@ -50,8 +54,13 @@
       list-style: none;
     }
 
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
     .container {
-      width: min(1150px, 92%);
+      width: min(1180px, 92%);
       margin: auto;
     }
 
@@ -60,28 +69,41 @@
       inset: 0;
       width: 100%;
       height: 100%;
-      z-index: -2;
+      z-index: -3;
       pointer-events: none;
     }
 
     .cursor-glow {
       position: fixed;
-      width: 220px;
-      height: 220px;
+      width: 240px;
+      height: 240px;
       border-radius: 50%;
-      background: radial-gradient(circle, rgba(0,229,255,0.16), rgba(123,47,255,0.08), transparent 70%);
-      pointer-events: none;
+      background: radial-gradient(circle, rgba(0,229,255,0.18), rgba(123,47,255,0.10), transparent 70%);
       transform: translate(-50%, -50%);
-      z-index: -1;
+      pointer-events: none;
       filter: blur(18px);
+      z-index: -2;
+    }
+
+    .gradient-text {
+      background: linear-gradient(135deg, var(--accent1), var(--accent4), var(--accent2), var(--accent3));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .glass {
+      background: var(--card);
+      border: 1px solid var(--border);
+      backdrop-filter: blur(14px);
+      box-shadow: var(--shadow);
     }
 
     nav {
       position: sticky;
       top: 0;
       z-index: 999;
-      backdrop-filter: blur(14px);
-      background: rgba(5, 10, 20, 0.65);
+      background: rgba(5, 11, 23, 0.72);
+      backdrop-filter: blur(18px);
       border-bottom: 1px solid rgba(255,255,255,0.08);
     }
 
@@ -89,7 +111,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 16px 0;
+      min-height: 78px;
       position: relative;
     }
 
@@ -110,74 +132,109 @@
     .nav-links {
       display: flex;
       gap: 22px;
+      align-items: center;
       flex-wrap: wrap;
     }
 
     .nav-links a {
       color: var(--muted);
-      transition: 0.3s ease;
+      font-size: 0.96rem;
       font-weight: 500;
+      transition: 0.3s ease;
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -6px;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(135deg, var(--accent1), var(--accent2));
+      transition: 0.3s ease;
     }
 
     .nav-links a:hover {
-      color: var(--accent1);
+      color: var(--text);
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
     }
 
     .menu-toggle {
       display: none;
+      border: 1px solid rgba(255,255,255,0.12);
       background: rgba(255,255,255,0.06);
       color: white;
-      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 14px;
       padding: 10px 14px;
-      border-radius: 12px;
-      font-size: 1.2rem;
+      font-size: 1.1rem;
       cursor: pointer;
+    }
+
+    section {
+      padding: 92px 0;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    .section-title h2 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: clamp(1.9rem, 4vw, 2.8rem);
+      margin-bottom: 12px;
+    }
+
+    .section-title p {
+      max-width: 720px;
+      margin: auto;
+      color: var(--muted);
+      line-height: 1.8;
     }
 
     .hero {
       min-height: 100vh;
       display: flex;
       align-items: center;
-      position: relative;
-      padding: 70px 0 40px;
+      padding-top: 30px;
     }
 
     .hero-grid {
       display: grid;
-      grid-template-columns: 1.2fr 0.8fr;
-      gap: 40px;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 42px;
       align-items: center;
     }
 
     .badge {
-      display: inline-block;
-      padding: 8px 16px;
-      border: 1px solid rgba(255,255,255,0.14);
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 16px;
       border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.12);
       background: rgba(255,255,255,0.05);
       color: var(--accent1);
-      font-size: 0.9rem;
-      margin-bottom: 20px;
+      margin-bottom: 18px;
+      font-size: 0.92rem;
     }
 
     .hero h1 {
       font-family: 'Orbitron', sans-serif;
-      font-size: clamp(2.4rem, 6vw, 4.5rem);
-      line-height: 1.1;
-      margin-bottom: 16px;
-    }
-
-    .gradient-text {
-      background: linear-gradient(135deg, var(--accent1), #8ec5ff, var(--accent2), var(--accent3));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+      font-size: clamp(2.5rem, 6vw, 4.6rem);
+      line-height: 1.08;
+      margin-bottom: 14px;
     }
 
     .typing-line {
-      font-size: 1.25rem;
-      margin-bottom: 18px;
-      color: #d8e6ff;
+      font-size: 1.18rem;
       min-height: 34px;
+      margin-bottom: 18px;
+      color: #dbe7ff;
       font-weight: 600;
     }
 
@@ -194,50 +251,48 @@
 
     .hero p {
       color: var(--muted);
-      font-size: 1rem;
-      line-height: 1.8;
+      line-height: 1.9;
       max-width: 650px;
       margin-bottom: 28px;
+      font-size: 1rem;
     }
 
     .hero-buttons {
       display: flex;
-      flex-wrap: wrap;
       gap: 14px;
-      margin-bottom: 28px;
+      flex-wrap: wrap;
+      margin-bottom: 24px;
     }
 
     .btn {
       display: inline-flex;
-      align-items: center;
       justify-content: center;
+      align-items: center;
       gap: 8px;
       padding: 13px 24px;
       border-radius: 999px;
-      border: 1px solid transparent;
-      background: linear-gradient(135deg, var(--accent1), var(--accent2));
-      color: white;
       font-weight: 700;
       transition: 0.3s ease;
-      box-shadow: 0 0 25px rgba(0,229,255,0.15);
+      border: 1px solid transparent;
       position: relative;
       overflow: hidden;
     }
 
-    .btn:hover {
-      transform: translateY(-3px) scale(1.03);
-      box-shadow: 0 0 30px rgba(123,47,255,0.35);
+    .btn-primary {
+      color: white;
+      background: linear-gradient(135deg, var(--accent1), var(--accent2));
+      box-shadow: 0 0 26px rgba(0,229,255,0.16);
     }
 
     .btn-outline {
-      background: transparent;
-      border: 1px solid rgba(255,255,255,0.18);
       color: var(--text);
+      background: rgba(255,255,255,0.04);
+      border-color: rgba(255,255,255,0.14);
     }
 
-    .btn-outline:hover {
-      border-color: var(--accent1);
-      color: var(--accent1);
+    .btn:hover {
+      transform: translateY(-3px) scale(1.03);
+      box-shadow: 0 0 30px rgba(123,47,255,0.24);
     }
 
     .hero-stats {
@@ -248,15 +303,22 @@
     }
 
     .stat-card {
-      background: var(--card);
-      border: 1px solid var(--card-border);
-      backdrop-filter: blur(12px);
-      border-radius: 18px;
-      padding: 18px;
+      padding: 20px;
+      border-radius: 22px;
       text-align: center;
+      background: var(--card);
+      border: 1px solid var(--border);
+      backdrop-filter: blur(12px);
       box-shadow: var(--shadow);
+      transition: 0.35s ease;
       position: relative;
       overflow: hidden;
+    }
+
+    .stat-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(0,229,255,0.35);
+      box-shadow: 0 0 22px rgba(0,229,255,0.14), 0 0 40px rgba(123,47,255,0.12);
     }
 
     .stat-card h3 {
@@ -266,19 +328,27 @@
     }
 
     .stat-card p {
-      font-size: 0.92rem;
       margin: 0;
+      font-size: 0.95rem;
+      color: var(--muted);
     }
 
     .hero-card {
+      padding: 28px;
+      border-radius: 30px;
       background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.04));
       border: 1px solid rgba(255,255,255,0.12);
-      border-radius: 28px;
-      padding: 28px;
       box-shadow: var(--shadow);
       position: relative;
       overflow: hidden;
       text-align: center;
+      transition: 0.35s ease;
+    }
+
+    .hero-card:hover {
+      transform: translateY(-8px);
+      border-color: rgba(0,229,255,0.35);
+      box-shadow: 0 0 26px rgba(0,229,255,0.16), 0 0 50px rgba(123,47,255,0.14);
     }
 
     .hero-card::before {
@@ -286,19 +356,31 @@
       position: absolute;
       width: 180px;
       height: 180px;
-      background: radial-gradient(circle, rgba(0,229,255,0.28), transparent 70%);
-      top: -50px;
+      top: -60px;
       right: -40px;
+      background: radial-gradient(circle, rgba(0,229,255,0.22), transparent 70%);
+      z-index: 0;
+    }
+
+    .hero-card > * {
+      position: relative;
+      z-index: 1;
     }
 
     .profile-ring {
-      width: 240px;
-      height: 240px;
+      width: 250px;
+      height: 250px;
       margin: auto;
       padding: 6px;
       border-radius: 50%;
       background: linear-gradient(135deg, var(--accent1), var(--accent2), var(--accent3));
-      box-shadow: 0 0 35px rgba(0,229,255,0.2);
+      box-shadow: 0 0 40px rgba(0,229,255,0.20);
+      transition: 0.35s ease;
+    }
+
+    .hero-card:hover .profile-ring {
+      transform: scale(1.03);
+      box-shadow: 0 0 35px rgba(0,229,255,0.28), 0 0 60px rgba(255,78,205,0.16);
     }
 
     .profile-photo {
@@ -306,47 +388,58 @@
       height: 100%;
       object-fit: cover;
       border-radius: 50%;
-      display: block;
-      border: 4px solid rgba(7,17,31,0.9);
+      border: 4px solid rgba(5, 11, 23, 0.9);
+    }
+
+    .image-upload-box {
+      margin-top: 18px;
+      text-align: center;
+    }
+
+    #imageUpload {
+      display: none;
+    }
+
+    .upload-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 18px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, var(--accent1), var(--accent2));
+      color: white;
+      cursor: pointer;
+      font-weight: 700;
+      transition: 0.3s ease;
+      box-shadow: 0 0 20px rgba(0,229,255,0.16);
+    }
+
+    .upload-btn:hover {
+      transform: translateY(-2px) scale(1.03);
+      box-shadow: 0 0 26px rgba(123,47,255,0.24);
+    }
+
+    .upload-note {
+      margin-top: 10px;
+      font-size: 0.87rem;
+      color: var(--muted);
     }
 
     .mini-tags {
       display: flex;
-      gap: 10px;
       flex-wrap: wrap;
-      margin-top: 18px;
+      gap: 10px;
       justify-content: center;
+      margin-top: 18px;
     }
 
     .mini-tags span {
       padding: 8px 14px;
       border-radius: 999px;
-      background: rgba(255,255,255,0.06);
-      border: 1px solid rgba(255,255,255,0.1);
-      color: #dce9ff;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.10);
+      color: #dbe8ff;
       font-size: 0.88rem;
-    }
-
-    section {
-      padding: 90px 0;
-    }
-
-    .section-title {
-      text-align: center;
-      margin-bottom: 50px;
-    }
-
-    .section-title h2 {
-      font-family: 'Orbitron', sans-serif;
-      font-size: clamp(1.8rem, 4vw, 2.8rem);
-      margin-bottom: 10px;
-    }
-
-    .section-title p {
-      color: var(--muted);
-      max-width: 700px;
-      margin: auto;
-      line-height: 1.7;
     }
 
     .grid {
@@ -355,16 +448,16 @@
     }
 
     .about-grid {
-      grid-template-columns: 1.2fr 0.8fr;
+      grid-template-columns: 1.15fr 0.85fr;
       align-items: start;
     }
 
     .card {
       background: var(--card);
-      border: 1px solid var(--card-border);
-      border-radius: 24px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
       padding: 26px;
-      backdrop-filter: blur(12px);
+      backdrop-filter: blur(14px);
       box-shadow: var(--shadow);
       transition: 0.35s ease;
       position: relative;
@@ -374,17 +467,18 @@
     .card:hover {
       transform: translateY(-6px);
       border-color: rgba(0,229,255,0.35);
+      box-shadow: 0 0 20px rgba(0,229,255,0.12), 0 0 40px rgba(123,47,255,0.12);
     }
 
     .card h3 {
-      margin-bottom: 14px;
       font-size: 1.25rem;
-      color: #fff;
+      margin-bottom: 14px;
+      color: white;
     }
 
     .card p {
       color: var(--muted);
-      line-height: 1.8;
+      line-height: 1.85;
     }
 
     .info-list {
@@ -396,11 +490,11 @@
     .info-list li {
       display: flex;
       justify-content: space-between;
-      gap: 16px;
-      padding: 12px 16px;
-      border-radius: 14px;
+      gap: 12px;
+      padding: 14px 16px;
+      border-radius: 16px;
       background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.08);
       color: var(--muted);
     }
 
@@ -408,12 +502,45 @@
       color: var(--text);
     }
 
-    .skills-grid {
-      grid-template-columns: repeat(2, 1fr);
+    .projects-grid {
+      grid-template-columns: repeat(3, 1fr);
     }
 
-    .skill-category h3 {
-      margin-bottom: 18px;
+    .project-tag {
+      display: inline-block;
+      padding: 7px 12px;
+      border-radius: 999px;
+      font-size: 0.84rem;
+      background: rgba(0,229,255,0.12);
+      color: var(--accent1);
+      margin-bottom: 14px;
+    }
+
+    .project-links {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 18px;
+    }
+
+    .small-btn {
+      padding: 10px 16px;
+      border-radius: 12px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.12);
+      font-size: 0.92rem;
+      transition: 0.3s ease;
+      color: #e9f3ff;
+    }
+
+    .small-btn:hover {
+      transform: translateY(-2px);
+      border-color: rgba(0,229,255,0.40);
+      color: var(--accent1);
+    }
+
+    .skills-grid {
+      grid-template-columns: repeat(2, 1fr);
     }
 
     .skill-item {
@@ -423,8 +550,9 @@
     .skill-top {
       display: flex;
       justify-content: space-between;
+      gap: 12px;
       margin-bottom: 8px;
-      color: #dbe8ff;
+      color: #e1ebff;
       font-size: 0.95rem;
     }
 
@@ -441,95 +569,42 @@
       height: 100%;
       border-radius: 999px;
       background: linear-gradient(135deg, var(--accent1), var(--accent2), var(--accent3));
-      box-shadow: 0 0 18px rgba(123,47,255,0.25);
-    }
-
-    .projects-grid {
-      grid-template-columns: repeat(3, 1fr);
-    }
-
-    .project-card {
-      position: relative;
-      overflow: hidden;
-    }
-
-    .project-card .project-tag {
-      display: inline-block;
-      font-size: 0.85rem;
-      padding: 7px 12px;
-      border-radius: 999px;
-      background: rgba(0,229,255,0.12);
-      color: var(--accent1);
-      margin-bottom: 14px;
-    }
-
-    .project-card p {
-      margin-bottom: 18px;
-    }
-
-    .project-links {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-      margin-top: 12px;
-    }
-
-    .small-btn {
-      padding: 10px 16px;
-      border-radius: 12px;
-      border: 1px solid rgba(255,255,255,0.12);
-      background: rgba(255,255,255,0.05);
-      transition: 0.3s ease;
-      font-size: 0.92rem;
-      color: #eaf3ff;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .small-btn:hover {
-      border-color: var(--accent1);
-      color: var(--accent1);
-      transform: translateY(-2px);
+      box-shadow: 0 0 16px rgba(123,47,255,0.24);
     }
 
     .timeline {
       display: grid;
-      gap: 20px;
+      gap: 22px;
     }
 
     .timeline-item {
-      position: relative;
       padding-left: 22px;
       border-left: 2px solid rgba(0,229,255,0.35);
+      position: relative;
     }
 
     .timeline-item::before {
       content: "";
       position: absolute;
+      left: -7px;
+      top: 7px;
       width: 12px;
       height: 12px;
-      background: linear-gradient(135deg, var(--accent1), var(--accent2));
       border-radius: 50%;
-      left: -7px;
-      top: 6px;
+      background: linear-gradient(135deg, var(--accent1), var(--accent2));
       box-shadow: 0 0 14px rgba(0,229,255,0.55);
     }
 
     .timeline-item h4 {
-      font-size: 1.08rem;
+      font-size: 1.06rem;
       margin-bottom: 6px;
     }
 
     .timeline-item span {
-      color: var(--accent1);
-      font-size: 0.92rem;
       display: inline-block;
       margin-bottom: 8px;
-    }
-
-    .timeline-item p {
-      color: var(--muted);
-      line-height: 1.7;
+      font-size: 0.92rem;
+      color: var(--accent1);
     }
 
     .cert-grid,
@@ -537,17 +612,8 @@
       grid-template-columns: repeat(3, 1fr);
     }
 
-    .pill {
-      display: inline-block;
-      margin-top: 14px;
-      padding: 8px 14px;
-      border-radius: 999px;
-      background: rgba(123,47,255,0.14);
-      color: #d9c8ff;
-      font-size: 0.85rem;
-    }
-
-    .cert-card {
+    .cert-card,
+    .achievement-card {
       text-align: center;
     }
 
@@ -559,14 +625,24 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.9rem;
+      font-size: 1.8rem;
       background: linear-gradient(135deg, rgba(0,229,255,0.18), rgba(123,47,255,0.18));
-      border: 1px solid rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.10);
       box-shadow: 0 0 20px rgba(123,47,255,0.18);
     }
 
+    .pill {
+      display: inline-block;
+      margin-top: 14px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      font-size: 0.84rem;
+      background: rgba(123,47,255,0.14);
+      color: #dac8ff;
+    }
+
     .contact-grid {
-      grid-template-columns: 0.9fr 1.1fr;
+      grid-template-columns: 0.85fr 1.15fr;
       align-items: start;
     }
 
@@ -576,22 +652,29 @@
     }
 
     .contact-item {
-      padding: 16px 18px;
-      border-radius: 18px;
+      padding: 18px;
+      border-radius: 20px;
       background: rgba(255,255,255,0.04);
       border: 1px solid rgba(255,255,255,0.08);
-      position: relative;
-      overflow: hidden;
+      transition: 0.3s ease;
+    }
+
+    .contact-item:hover {
+      border-color: rgba(0,229,255,0.30);
+      box-shadow: 0 0 18px rgba(0,229,255,0.10), 0 0 34px rgba(123,47,255,0.10);
+      transform: translateY(-3px);
     }
 
     .contact-item h4 {
       margin-bottom: 8px;
-      color: #fff;
+      color: white;
     }
 
-    .contact-item p, .contact-item a {
+    .contact-item p,
+    .contact-item a {
       color: var(--muted);
-      line-height: 1.7;
+      line-height: 1.8;
+      word-break: break-word;
     }
 
     .contact-form {
@@ -604,7 +687,7 @@
       width: 100%;
       padding: 15px 16px;
       border-radius: 16px;
-      border: 1px solid rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.10);
       background: rgba(255,255,255,0.04);
       color: white;
       outline: none;
@@ -618,12 +701,12 @@
     }
 
     .contact-form textarea {
-      min-height: 140px;
+      min-height: 150px;
       resize: vertical;
     }
 
     footer {
-      padding: 28px 0 40px;
+      padding: 30px 0 44px;
       border-top: 1px solid rgba(255,255,255,0.08);
       text-align: center;
       color: var(--muted);
@@ -661,6 +744,7 @@
       background: linear-gradient(120deg, transparent, rgba(255,255,255,0.05), transparent);
       transform: translateX(-100%);
       transition: transform 0.8s ease;
+      pointer-events: none;
     }
 
     .card:hover::after,
@@ -672,11 +756,11 @@
     @media (max-width: 980px) {
       .hero-grid,
       .about-grid,
-      .contact-grid,
-      .skills-grid,
       .projects-grid,
+      .skills-grid,
       .cert-grid,
-      .achievement-grid {
+      .achievement-grid,
+      .contact-grid {
         grid-template-columns: 1fr;
       }
 
@@ -688,24 +772,19 @@
         display: block;
       }
 
-      .nav-wrap {
-        flex-direction: row;
-        align-items: center;
-      }
-
       .nav-links {
         position: absolute;
-        top: 72px;
-        right: 4%;
-        width: min(320px, 92%);
-        background: rgba(7, 17, 31, 0.96);
-        border: 1px solid rgba(255,255,255,0.1);
-        border-radius: 18px;
+        top: 78px;
+        right: 0;
+        width: min(340px, 94vw);
         padding: 18px;
-        display: none;
+        border-radius: 18px;
         flex-direction: column;
-        gap: 14px;
+        align-items: flex-start;
+        background: rgba(8, 15, 28, 0.97);
+        border: 1px solid rgba(255,255,255,0.10);
         box-shadow: var(--shadow);
+        display: none;
       }
 
       .nav-links.show {
@@ -718,8 +797,8 @@
       }
 
       .profile-ring {
-        width: 200px;
-        height: 200px;
+        width: 210px;
+        height: 210px;
       }
     }
 
@@ -732,12 +811,12 @@
         font-size: 1rem;
       }
 
-      .btn {
-        width: 100%;
-      }
-
       .hero-buttons {
         flex-direction: column;
+      }
+
+      .btn {
+        width: 100%;
       }
 
       .info-list li {
@@ -773,23 +852,27 @@
   <section class="hero" id="home">
     <div class="container hero-grid">
       <div class="reveal active">
-        <div class="badge">Welcome to my digital portfolio</div>
+        <div class="badge">🚀 Welcome to my premium portfolio</div>
+
         <h1>
           Hi, I'm <span class="gradient-text">Rohit Bhatt</span>
         </h1>
+
         <div class="typing-line">
           I am a <span id="typing"></span>
         </div>
+
         <p>
           I am passionate about Machine Learning, Blockchain, Big Data, Data Science, and modern web development.
           I enjoy building practical projects, solving real-world problems, and continuously learning new technologies.
         </p>
 
         <div class="hero-buttons">
-          <a href="#projects" class="btn">View Projects</a>
+          <a href="#projects" class="btn btn-primary">View Projects</a>
           <a href="#contact" class="btn btn-outline">Contact Me</a>
-          <a href="resume.pdf" class="btn btn-outline" target="_blank">Download Resume</a>
-          <a href="https://github.com/rohitbhatt-07" class="btn btn-outline" target="_blank">View GitHub</a>
+          <a href="resume.pdf" target="_blank" class="btn btn-outline">Download Resume</a>
+          <a href="https://github.com/rohitbhatt-07" target="_blank" class="btn btn-outline">GitHub</a>
+          <a href="https://www.linkedin.com/in/rohit-kumar-765a571b9" target="_blank" class="btn btn-outline">LinkedIn</a>
         </div>
 
         <div class="hero-stats">
@@ -810,8 +893,15 @@
 
       <div class="hero-card reveal">
         <div class="profile-ring">
-          <img src="rohit.jpg" alt="Rohit Bhatt" class="profile-photo">
+          <img src="rohit.jpg" alt="Rohit Bhatt" class="profile-photo" id="profilePreview">
         </div>
+
+        <div class="image-upload-box">
+          <label for="imageUpload" class="upload-btn">Choose Profile Image</label>
+          <input type="file" id="imageUpload" accept="image/*">
+          <p class="upload-note">Select image from browser for live preview</p>
+        </div>
+
         <h3 style="margin-top:18px;">Rohit Bhatt</h3>
         <p style="text-align:center; color:var(--muted); margin-top:8px;">
           CS Student • Developer • ML & Blockchain Learner
@@ -870,7 +960,7 @@
       </div>
 
       <div class="grid projects-grid">
-        <div class="card project-card reveal">
+        <div class="card reveal">
           <span class="project-tag">Blockchain</span>
           <h3>Healthcare Blockchain System</h3>
           <p>
@@ -883,12 +973,11 @@
           </div>
         </div>
 
-        <div class="card project-card reveal">
+        <div class="card reveal">
           <span class="project-tag">Computer Vision</span>
           <h3>OpenCV Face Detection</h3>
           <p>
             A face detection project using Python and OpenCV with Haar Cascade for identifying faces from images.
-            Built as part of practical computer vision learning.
           </p>
           <div class="project-links">
             <a href="https://github.com/rohitbhatt-07" target="_blank" class="small-btn">GitHub</a>
@@ -896,12 +985,11 @@
           </div>
         </div>
 
-        <div class="card project-card reveal">
+        <div class="card reveal">
           <span class="project-tag">Data Science</span>
           <h3>Bitcoin Price Forecasting</h3>
           <p>
-            A forecasting-oriented academic project focused on analyzing Bitcoin price trends and understanding
-            predictive modeling concepts in time series and ML.
+            A forecasting-oriented academic project focused on analyzing Bitcoin price trends and understanding predictive modeling concepts.
           </p>
           <div class="project-links">
             <a href="https://github.com/rohitbhatt-07" target="_blank" class="small-btn">GitHub</a>
@@ -909,12 +997,11 @@
           </div>
         </div>
 
-        <div class="card project-card reveal">
+        <div class="card reveal">
           <span class="project-tag">Analytics</span>
           <h3>Power BI IPL Dashboard</h3>
           <p>
-            An interactive cricket analytics dashboard using Power BI to visualize player statistics, team performance,
-            and tournament insights in a professional presentation style.
+            An interactive cricket analytics dashboard using Power BI to visualize player statistics, team performance, and tournament insights.
           </p>
           <div class="project-links">
             <a href="https://github.com/rohitbhatt-07" target="_blank" class="small-btn">GitHub</a>
@@ -922,12 +1009,11 @@
           </div>
         </div>
 
-        <div class="card project-card reveal">
+        <div class="card reveal">
           <span class="project-tag">R Programming</span>
           <h3>Student Performance Analysis</h3>
           <p>
-            A data analysis project in R using visualizations, summary statistics, and regression-style thinking
-            to interpret student performance data.
+            A data analysis project in R using visualizations, summary statistics, and regression-style thinking to interpret student data.
           </p>
           <div class="project-links">
             <a href="https://github.com/rohitbhatt-07" target="_blank" class="small-btn">GitHub</a>
@@ -935,12 +1021,11 @@
           </div>
         </div>
 
-        <div class="card project-card reveal">
+        <div class="card reveal">
           <span class="project-tag">Web Development</span>
           <h3>Personal Portfolio Website</h3>
           <p>
-            A modern responsive portfolio website built with HTML, CSS, and JavaScript featuring animations,
-            section reveals, project showcases, and premium UI styling.
+            A modern responsive portfolio website built with HTML, CSS, and JavaScript featuring animations, section reveals, and premium UI styling.
           </p>
           <div class="project-links">
             <a href="https://github.com/rohitbhatt-07" target="_blank" class="small-btn">GitHub</a>
@@ -959,7 +1044,7 @@
       </div>
 
       <div class="grid skills-grid">
-        <div class="card skill-category reveal">
+        <div class="card reveal">
           <h3>Programming & Development</h3>
 
           <div class="skill-item">
@@ -988,7 +1073,7 @@
           </div>
         </div>
 
-        <div class="card skill-category reveal">
+        <div class="card reveal">
           <h3>Data & Emerging Technologies</h3>
 
           <div class="skill-item">
@@ -1033,8 +1118,7 @@
             <h4>Master's in Computer Science</h4>
             <span>Pursuing</span>
             <p>
-              Advanced study in computing topics including machine learning, data science, analytics,
-              programming, and emerging technologies.
+              Advanced study in computing topics including machine learning, data science, analytics, programming, and emerging technologies.
             </p>
           </div>
 
@@ -1058,21 +1142,21 @@
       </div>
 
       <div class="grid cert-grid">
-        <div class="card reveal cert-card">
+        <div class="card cert-card reveal">
           <div class="cert-icon">🤖</div>
           <h3>Machine Learning Certification</h3>
           <p>Completed foundational learning in ML concepts, model understanding, and applied workflows.</p>
           <span class="pill">Machine Learning</span>
         </div>
 
-        <div class="card reveal cert-card">
+        <div class="card cert-card reveal">
           <div class="cert-icon">⛓️</div>
           <h3>Blockchain / Web3 Learning</h3>
           <p>Explored smart contracts, Ethereum basics, Solidity programming, and decentralized app concepts.</p>
           <span class="pill">Blockchain</span>
         </div>
 
-        <div class="card reveal cert-card">
+        <div class="card cert-card reveal">
           <div class="cert-icon">📊</div>
           <h3>Data Analytics / Visualization</h3>
           <p>Worked with dashboards, data interpretation, and reporting concepts using modern analytics tools.</p>
@@ -1090,17 +1174,17 @@
       </div>
 
       <div class="grid achievement-grid">
-        <div class="card reveal">
+        <div class="card achievement-card reveal">
           <h3>Tech Fest Coordinator</h3>
           <p>Coordinated technical events and managed activities that required planning, teamwork, and communication.</p>
         </div>
 
-        <div class="card reveal">
+        <div class="card achievement-card reveal">
           <h3>Cricket Team Captain</h3>
           <p>Demonstrated leadership, strategy, and team management through sports participation and captaincy.</p>
         </div>
 
-        <div class="card reveal">
+        <div class="card achievement-card reveal">
           <h3>Speech / Presentation Participation</h3>
           <p>Built confidence in communication, public speaking, and presenting technical and academic ideas clearly.</p>
         </div>
@@ -1129,7 +1213,7 @@
 
           <div class="contact-item">
             <h4>LinkedIn</h4>
-            <a href="#" target="https://www.linkedin.com/in/rohit-kumar-765a571b9" target="_blank">
+            <a href="https://www.linkedin.com/in/rohit-kumar-765a571b9" target="_blank">linkedin.com/in/rohit-kumar-765a571b9</a>
           </div>
 
           <div class="contact-item">
@@ -1144,7 +1228,7 @@
             <input type="email" name="email" placeholder="Your Email" required>
             <input type="text" name="subject" placeholder="Subject" required>
             <textarea name="message" placeholder="Write your message here..." required></textarea>
-            <button type="submit" class="btn">Send Message</button>
+            <button type="submit" class="btn btn-primary">Send Message</button>
           </form>
         </div>
       </div>
@@ -1159,8 +1243,9 @@
         <a href="#projects">Projects</a>
         <a href="#contact">Contact</a>
         <a href="https://github.com/rohitbhatt-07" target="_blank">GitHub</a>
+        <a href="https://www.linkedin.com/in/rohit-kumar-765a571b9" target="_blank">LinkedIn</a>
       </div>
-      <p>© Rohit bhatt. All Rights Reserved.</p>
+      <p>© Rohit Bhatt. All Rights Reserved.</p>
     </div>
   </footer>
 
@@ -1198,7 +1283,7 @@
         }
       }
 
-      setTimeout(typeEffect, isDeleting ? 50 : 100);
+      setTimeout(typeEffect, isDeleting ? 50 : 95);
     }
 
     typeEffect();
@@ -1208,9 +1293,7 @@
       reveals.forEach((el) => {
         const windowHeight = window.innerHeight;
         const elementTop = el.getBoundingClientRect().top;
-        const elementVisible = 100;
-
-        if (elementTop < windowHeight - elementVisible) {
+        if (elementTop < windowHeight - 100) {
           el.classList.add("active");
         }
       });
@@ -1232,6 +1315,22 @@
       });
     });
 
+    const imageUpload = document.getElementById("imageUpload");
+    const profilePreview = document.getElementById("profilePreview");
+
+    if (imageUpload && profilePreview) {
+      imageUpload.addEventListener("change", function () {
+        const file = this.files[0];
+        if (file) {
+          const reader = new FileReader();
+          reader.onload = function (e) {
+            profilePreview.src = e.target.result;
+          };
+          reader.readAsDataURL(file);
+        }
+      });
+    }
+
     const glow = document.querySelector(".cursor-glow");
     window.addEventListener("mousemove", (e) => {
       glow.style.left = e.clientX + "px";
@@ -1247,20 +1346,13 @@
       canvas.height = window.innerHeight;
     }
 
-    window.addEventListener("resize", () => {
-      resizeCanvas();
-      initParticles();
-    });
-
-    resizeCanvas();
-
     class Particle {
       constructor() {
         this.x = Math.random() * canvas.width;
         this.y = Math.random() * canvas.height;
         this.size = Math.random() * 2 + 1;
-        this.speedX = (Math.random() - 0.5) * 0.6;
-        this.speedY = (Math.random() - 0.5) * 0.6;
+        this.speedX = (Math.random() - 0.5) * 0.55;
+        this.speedY = (Math.random() - 0.5) * 0.55;
       }
 
       update() {
@@ -1281,7 +1373,7 @@
 
     function initParticles() {
       particlesArray = [];
-      const count = Math.min(80, Math.floor(window.innerWidth / 18));
+      const count = Math.min(85, Math.floor(window.innerWidth / 18));
       for (let i = 0; i < count; i++) {
         particlesArray.push(new Particle());
       }
@@ -1309,7 +1401,7 @@
     function animateParticles() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      particlesArray.forEach(particle => {
+      particlesArray.forEach((particle) => {
         particle.update();
         particle.draw();
       });
@@ -1318,6 +1410,12 @@
       requestAnimationFrame(animateParticles);
     }
 
+    window.addEventListener("resize", () => {
+      resizeCanvas();
+      initParticles();
+    });
+
+    resizeCanvas();
     initParticles();
     animateParticles();
   </script>
